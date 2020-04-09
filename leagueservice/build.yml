@@ -1,0 +1,2 @@
+- name: Creating a maven build
+  uses: PrajjawalBanati/Java_Programs@0.0.1
