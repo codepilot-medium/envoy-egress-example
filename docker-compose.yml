@@ -1,0 +1,38 @@
+version: '3.5'
+services:
+
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile-proxy
+    volumes:
+      - ./envoy.yaml:/etc/envoy.yaml
+    networks:
+      envoymesh:
+        aliases:
+          - envoy
+    expose:
+      - "8081"
+      - "8001"
+      - "8443"
+    ports:
+      - "8081:8081"
+      - "8001:8001"
+      - "8443:8443"
+
+  leagueservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      envoymesh:
+        aliases:
+          - leagueservice
+    expose:
+      - "8812"
+    ports:
+      - "8812:8812"
+
+networks:
+  envoymesh:
+    name: envoymesh

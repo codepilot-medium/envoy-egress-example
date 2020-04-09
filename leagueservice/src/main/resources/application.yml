@@ -1,0 +1,6 @@
+server:
+  port: 8812
+
+league:
+  api:
+    url: http://envoy:8001/standings
